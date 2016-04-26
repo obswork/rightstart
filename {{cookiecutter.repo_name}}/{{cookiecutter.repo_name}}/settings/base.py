@@ -75,16 +75,18 @@ INSTALLED_APPS = (
 
     'wagalytics',
     'wagtailfontawesome',
-    
-    'utils',
-    'pages',
-    'blog',
-    'events',
-    'contact',
-    'people',
-    'photo_gallery',
-    'products',
-    'documents_gallery',
+
+    # OPTIONAL APPS (site-breaking use of fixtures in pages - see: https://github.com/chrisdev/wagtail-cookiecutter-foundation/issues/257)
+
+    # 'utils',
+    # 'pages',
+    # 'blog',
+    # 'events',
+    # 'contact',
+    # 'people',
+    # 'photo_gallery',
+    # 'products',
+    # 'documents_gallery',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -109,7 +111,7 @@ TEMPLATES = [
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
-            'debug' : DEBUG,
+            'debug': DEBUG,
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
