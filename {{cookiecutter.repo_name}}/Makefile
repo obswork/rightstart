@@ -23,7 +23,7 @@ help:
 .PHONY: requirements
 
 
-all: virtualenv requirements db migrate initial_data bower runserver
+all: virtualenv requirements db migrate bower runserver
 
 # Command variables
 MANAGE_CMD = python manage.py
