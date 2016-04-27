@@ -33,8 +33,9 @@ chmod a+x $PROJECT_DIR/manage.py
 su - vagrant -c "$PYTHON $PROJECT_DIR/manage.py migrate --noinput && \
                  $PYTHON $PROJECT_DIR/manage.py update_index"
 
+# commented out below as no longer using fixtures
 # Load Fixtures
-su - vagrant -c "$PYTHON $PROJECT_DIR/manage.py load_initial_data"
+# su - vagrant -c "$PYTHON $PROJECT_DIR/manage.py load_initial_data"
 
 # Install NodeJS and Bower
 apt-get install python-software-properties
