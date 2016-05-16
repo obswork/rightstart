@@ -3,7 +3,7 @@
     "repo_name": "{{ cookiecutter.project_name|replace(' ', '_')|lower }}",
     "version_control_system": "git",
     "vcs_repo_username": "github_username",
-    "vcs_repo_hostname": "github.com"
+    "vcs_repo_hostname": "github.com",
     "author_name": "Your Name",
     "email": "Your email",
     "description": "A short description of the project.",
@@ -15,5 +15,6 @@
     "staging_host_name": "staging.example.org",
     "use_vagrant_staging": true,
     "deploy_user_name": "django",
-    "django_admin_user": "admin"
+    "django_admin_user": "admin",
+    "use_bootstrap": true
 }
