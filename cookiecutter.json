@@ -16,5 +16,6 @@
     "use_vagrant_staging": true,
     "deploy_user_name": "django",
     "django_admin_user": "admin",
-    "use_bootstrap": true
+    "use_bootstrap": true,
+    "use_fontawesome": true
 }
