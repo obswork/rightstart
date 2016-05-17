@@ -1,24 +1,13 @@
 Wagtail cookiecutter Foundation
 ================================
 
-.. image:: https://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation.svg?branch=master
-   :target: http://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation
-
-A cookiecutter_ template for `Wagtail CMS`_ featuring the `Zurb Foundation`_ 
-front-end framework. **Note the master branch of the project is now based on Foundation 6**.
-The release tagged ``0.0.2`` is based on Foundation 5.  
-A demo of a default project generated from this cookiecutter is available at http://wagtail.chrisdev.com.
-
-
-.. figure:: http://i.imgur.com/vNRQDGj.gif
-   :alt: Wagtail Cookiecutter Foundation
+A cookiecutter_ template for `Wagtail CMS`_ featuring `Bootstrap` frontend, Vagrant staging, and Ansible provisioning & orchestration.
 
 
 Topics
 ======
 
 - `What's included`_
-- `Migrating from Foundation 5 to Foundation 6`_
 - `Getting Started`_
 - `Up and Running for Development`_
     - `Using make`_
@@ -33,138 +22,18 @@ Topics
     - `Image Compression`_
 -  `Contributing`_
 
-More detailed documentation can be found on `Read the Docs`_ 
 
 What's included
 ----------------
-A Django project with Wagtail_ pre-installed with support for all the
-`Zurb Foundation`_ HTML, CSS and Javascript components (typography, forms, buttons,
-navigation and other interface components)
+A Django project with Wagtail pre-installed with support for all the
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`Wagtail CMS`: https://wagtail.io
-.. _`Zurb Foundation`: https://foundation.zurb.com
-.. _`Read the Docs`: http://wagtail-cookiecutter-foundation.readthedocs.org/en/latest/
 
-App Modules
-^^^^^^^^^^^^
-We provide a comprehensive suite of apps to use for building your site.
-We take  a modular approach so that can pick and choose the functionality you
-want to include. We provide separate modules for:
 
-    - ``pages`` - Different kinds of pages including, Homepage, Standard Pages, Faqs Page etc.
-    - ``blog`` - Blog or site news
-    - ``contact`` - Contact Page with included contact us form 
-    - ``events`` - Events
-    - ``photo_gallery`` - Create photo galleries using wagtail tags
-    - ``documents`` - Organize documents in folders using wagtail tags .
-    - ``products`` - Ideal for a product or portfolio showcase
-    - ``feeds`` - RSS/Atom feeds which support enclosures. 
-        (e.g image and video embeds and work with services like feedburner and mailchimp)
-    - ``people`` - For the people in your organization or team. 
-    - ``faq`` - FAQ and answers.
-    - ``utils`` - Various utility functions, templatetags and filters
+- A comprehensive set of  `make` commands is provided to help perform key development, provisioning and deployment tasks.
 
-The projects spun up with ``wagtail-cookiecutter-foundation`` are modular  
-so you can pick and choose the modules that you want to include in  in your project.
-
-Photo Gallery
-""""""""""""""
-The Photo Gallery module allows you to easily create Photo Galleries for your site
-Using the built in tagging functionality.  To create Photo Galleries  
-
-    * Go to Images section of the Wagtail Admin and click on Add an Image.
-
-    * Drag and drop images you want in your gallery and add common tag 
-      name to all the uploaded Images.  You can also add same tag name 
-      to any existing images that you want to include in the gallery.
-
-    * Next create a Gallery Index Page which displays all your galleries.
-
-    * Add a Gallery Child Page and enter the tags of the Images that you want
-      to appear in the Gallery. You can also choose a feed image so it can appear
-      in Gallery index page.
-
-    * Your Gallery is now created with all images you want. Awesome, right?
-
-Documents Folder 
-""""""""""""""""""
-This module allows to organize documents into "folders" based on common tags.  
-In many ways It works the same way as the Photo Gallery module. 
-
-    * Go to Documents section in Wagtail Admin.
-
-    * Add add a common tag name to all documents that you want to appear in the folder. 
-
-    * Now create a Document Index page which displays all your Document folders.
-
-    * Create a Document Folder Child Page and enter the tags for the document that you
-      want to appear in the folder. 
-
-    * The Folder is now created with all the Documents matching the tags you want.
-      Awesome, right?
-
-.. _Wagtail: https://wagtail.io
-.. _`Wagtail Demo Project`: https://github.com/torchbox/wagtaildemo
-
-Feeds 
-"""""""
-Syndication feeds come in two flavors:
-
- - BasicFeed -  A standard `RSS V 2.0.1`_ feed designed to be used without 
-   item enclosures.
-
- - ExtendedFeed - An RSS V2/Atom Feed with support for item  
-   enclosures such as images or video. Use this if when want to integrate your
-   feed with services like MailChimp or Flipboard.
-
-The `feeds`  module provides the flexibility of allowing you to specify the app
-module, PageModel and data fields to use for the feed. This is current being
-done through settings variables. In future versions we plan to provide a page
-model for truly plug and play functionality. For example, if we wish to create
-a Syndication Feed based on the `BlogPage` model which is the `blog` app.  ::
-
-    FEED_APP_LABEL = 'blog'
-    FEED_MODEL_NAME = 'BlogPage'
-
-To specify the use of the `BlogPage.intro` as for the item description and 
-The `body` field for the content enclosure add the following to your
-settings.::
-
-    FEED_ITEM_DESCRIPTION_FIELD = 'intro'
-    FEED_ITEM_CONTENT_FIELD = 'body'
-
-Then add the feed level attributes to the settings as follows: ::
-
-    FEED_TITLE = 'From the Desk of John Blog'
-    FEED_LINK = '/news/'
-    FEED_DESCRIPTION = "News and views from around the Web"
-    FEED_AUTHOR_EMAIL = 'john@johnblog.com'
-    FEED_AUTHOR_LINK = 'https://johnblog.com'
-
-Finally reference it in the `url.py` ::
-
-    url(r'^blog/feed/basic$', BasicFeed(), name='basic_feed'),
-    url(r'^blog/feed/extended$', ExtendedFeed(), name='extended_feed'),
-
-.. _`RSS V 2.0.1` : http://cyber.law.harvard.edu/rss/rss.html
-
-Other Components
-"""""""""""""""""
-- We provide templates and templatetags to support all the major Foundation ``HTML`` 
-  and ``CSS`` UI components including:
-
-    - Top bar including (sticky nav)
-    - Off canvas menu
-    - Bread crumbs
-    - SubNav
-    - Pagination
-    - Reveals  
-
-- We also provide comprehensive set of  `make` commands to  help you to  perform
-  key development, provisioning and deployment tasks.
-
-- libsass_ Foundation Sass support through `django-compressor`_/`django-libsass`_
+- libsass_ Sass support through `django-compressor`_/`django-libsass`_
 
 - Front end dependency management with Bower_ 
   
@@ -183,50 +52,6 @@ Other Components
 .. _Gulp: https://gulpjs.com
 .. _Grunt: https://gruntjs.com
 
-Migrating from Foundation 5 to Foundation 6
---------------------------------------------
-Bower Install
-^^^^^^^^^^^^^^
-In the bower.json change - "foundation": "~5.5.3"  to "foundation-sites": "~6.1.0"
-
-Modernizr
-^^^^^^^^^^
-Modernizr has been removed from foundation 6 so it can be removed from your base.html
-
-New Top-bar
-^^^^^^^^^^^^^
-`The entire code for the topbar has been changed`_
-
-New Off Canvas
-^^^^^^^^^^^^^^^
-* `The entire code for the offcanvas has been changed`_
-* `The drop down for off canvas can now use accordion vertical menu`_
-
-Block Grid Changed
-^^^^^^^^^^^^^^^^^^^
-`The html for a block grid has changed`_ : eg. medium-block-grid-4 to medium-up-4
-
-Clearing Box changes to Lightbox2
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-In foundation 6 there is no more clearing box which was used for the photo gallery so you can implement Lightbox2. Also the class “th” has been changed to “thumbnail”.
-`Lightbox2 documentation`_ : Install with bower - “lightbox2": "~2.8.2"
-
-SASS changes
-^^^^^^^^^^^^^
-`New SASS documentation`_
-
-What-input added
-^^^^^^^^^^^^^^^^
-What-input is a global utility for tracking the current input method (mouse, keyboard or touch) and has been added to foundation 6.
-`What-input documentation`_
-
-.. _`The entire code for the topbar has been changed`: http://foundation.zurb.com/sites/docs/top-bar.html
-.. _`The entire code for the offcanvas has been changed`: http://foundation.zurb.com/sites/docs/off-canvas.html
-.. _`The drop down for off canvas can now use accordion vertical menu`: http://foundation.zurb.com/sites/docs/accordion-menu.html
-.. _`The html for a block grid has changed`: http://foundation.zurb.com/sites/docs/grid.html
-.. _`Lightbox2 documentation`: http://lokeshdhakar.com/projects/lightbox2/
-.. _`New SASS documentation` : http://foundation.zurb.com/sites/docs/sass.html
-.. _`What-input documentation` : https://www.npmjs.com/package/what-input
 
 Getting Started
 ----------------
@@ -262,8 +87,11 @@ You will be prompted to answer the following questions. ::
     use_ssl_in_production (default is true)?
     staging_host_name (default is staging.example.org)?
     use_vagrant_staging (default is true)?
-    deploy_user_name (default is django)
-    django_admin_user (default is my_admin_user)    
+    deploy_user_name (default is django)?
+    django_admin_user (default is my_admin_user)?
+    use_bootstrap (default is true)?
+    use_fontawesome (default is true)?
+    
 
 Enter the project and take a look around::
 
@@ -275,7 +103,7 @@ Create a GitHub or Bitbucket repo for the project and push it there::
     $ git init
     $ git add .
     $ git commit -m "first awesome commit"
-    $ git remote add origin git@github.com:cclarke/my_site.git
+    $ git remote add origin git@github.com:username/project_name.git
     $ git push -u origin master
 
 
@@ -348,8 +176,7 @@ Populate the site with initial page structure. ::
 
 bower
 """""
-Install all front-end dependencies with bower i.e `foundation`, `bxslider` and 
-`font-awesome` ::
+Install all front-end dependencies with bower i.e `bootstrap`, `font-awesome` ::
 
   make bower 
 
@@ -448,30 +275,13 @@ Create the database and run migrations. Remember this cookiecutter requires
     createdb my_site
     ./manage.py migrate
 
-``wagtail-cookiecutter-foundation`` comes with some pages already created for your
-convenience including the homepage with a working ``bx_slider`` slideshow, 
-contact page, events and news/blog pages. To generate these pages run ::
-
-  /manage.py load_initial_data
-  
 The default Admin username is *admin*.  The default Admin password is *admin123*
 
-This cookiecutter also has front-end dependencies for Foundation, 
-Font-Awesome etc and bx_slider. We use bower_ 
-for front-end dependency management. To install the required front-end 
-dependencies use: ::
+To install the required front-end dependencies use: ::
 
    cd project_repo
    bower install`
 
-This will install the supported version of `Zurb Foundation`_, `Font
-Awesome`_ , bxSlider_ and Grunt as well as their dependencies.
-
-  ..  _bower: http://bower.io
-  ..  _bxSlider: http://bxslider.com
-  ..  _`Font Awesome`: http://fontawesome.io 
-
-  
 Finally start the development server ::
 
   ./manage.py runserver
@@ -541,7 +351,7 @@ secrets safe
 .. _`certificate pinning`: https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning
 .. _`Ansible Vault`: http://docs.ansible.com/ansible/playbooks_vault.html 
 
-Next, examine the generated `ansible/group_vars/all` file and replace 
+Next, if using SSL, examine the generated `ansible/group_vars/all` file and replace 
 the following to match your SSL key files ::
 
     ssl_private_key: your_ssl_private_key_file
@@ -570,7 +380,7 @@ The provisioning playbooks will:
   - Create a deployment user and download the public key of this user to the
     ``keystore`` directory.  This can then be used as a 
     deployment key for services like github.com, bitbucket.org, etc.
-  - Install all the required Linux packages ans libraries on the server.
+  - Install all the required Linux packages and libraries on the server.
   - Setup basic security  on the Linux box using `UFW Firewall`_ and 
     `fail2ban`_.
   - Install and configure PostgresSQL. 
@@ -606,7 +416,7 @@ Then create the deployment user return to the project root and run::
 
 When prompted for the password, enter "vagrant".
 
-If you get the following error ::
+If you get the following error (e.g. after halting/destroying the VM and rebuilding a new one)::
 
     fatal: [staging.example.org] => {'msg': 'FAILED: Authentication failed.', 'failed': True}``
 
@@ -649,10 +459,6 @@ To deploy to production run: ::
     make deploy 
 
 For staging run ::
-
-    make deploy_user DEPLOY_ENV=staging
-
-and for a Vagrant based staging server ::
 
     make deploy_user DEPLOY_ENV=staging
 
