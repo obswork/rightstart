@@ -146,6 +146,7 @@ else
 		cd ansible; \
 		$(PLAYBOOK) -vvvv -i $(DEPLOY_ENV) provision.yml --skip-tags user; \
 	)
+endif
 
 deploy:
 	$(call ECHO_BLUE, deploy changes to the $(DEPLOY_ENV) server )
