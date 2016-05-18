@@ -1,10 +1,12 @@
 {% raw %}---
 - name: update the apt-cache
   apt: update_cache=yes
+  become: yes
   tags: 
       - pg_install
 
 - name: Install PostgreSQL
+  become: yes
   apt: >
        pkg={{ item }}
        state=installed
