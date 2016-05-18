@@ -9,21 +9,10 @@
       tags:
           - vagrant
 
-    - name: Creates destination directory
-      file: state=directory mode=0700 dest=/root/.ssh/
-      tags:
-          - vagrant
-      
-    - name: Pushes user's rsa key to root's vagrant box (it's ok if this TASK fails)
-      copy: src=~/.ssh/id_rsa.pub dest=/root/.ssh/authorized_keys owner=root mode=0600
-      register: rsa
-      ignore_errors: yes
-      tags:
-          - vagrant
-
-    - name: Pushes user's dsa key to root's vagrant box (it's NOT ok if both TASKs fail)
-      copy: src=~/.ssh/id_dsa.pub dest=/root/.ssh/authorized_keys owner=root mode=0600
-      when: rsa|failed
+    - name: install ssh key
+      authorized_key: user=vagrant
+                      key="{{ lookup('file', '/users/home/.ssh/id_rsa.pub') }}"
+                      state=present
       tags:
           - vagrant
 
