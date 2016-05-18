@@ -23,7 +23,7 @@
         state=directory
         owner=root
         group=root
-  sudo: yes
+  become: yes
   when: use_ssl|bool
   tags:
       - nginx
@@ -35,7 +35,7 @@
         dest=/svr/ssl/{{ssl_private_key}}  
         owner=root
         group=root
-  sudo: yes
+  become: yes
   when: use_ssl|bool 
   tags:
     - ssl 
@@ -46,7 +46,7 @@
         dest=/svr/ssl/{{ ssl_cert }}
         owner=root 
         group=root
-  sudo: yes
+  become: yes
   when: use_ssl|bool 
   tags:
     - ssl
@@ -57,7 +57,7 @@
   args:
     chdir: /svr/ssl
     creates: /srv/ssl/dhparam.pem
-  sudo: yes
+  become: yes
   when: use_ssl|bool 
   tags:
       - nginx
@@ -69,7 +69,7 @@
         dest=/svr/ssl/{{ ca_cert }}
         owner=root 
         group=root
-  sudo: yes
+  become: yes
   when: use_ssl|bool 
   tags:
     - ssl

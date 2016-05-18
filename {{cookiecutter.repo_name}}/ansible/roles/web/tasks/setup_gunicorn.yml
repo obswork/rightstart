@@ -4,7 +4,7 @@
         owner={{ deploy_user }}
         group={{ deploy_user }}
         state=directory
-  sudo: no
+  become: no
   tags:
       - gunicorn
 
@@ -12,7 +12,7 @@
   template: src=gunicorn.j2
             dest={{ sites_dir }}/{{ project_name }}/gunicorn.conf
             backup=yes
-  sudo: no
+  become: no
   tags:
       - gunicorn
 
