@@ -7,7 +7,7 @@
     "author_name": "Your Name",
     "email": "Your email",
     "description": "A short description of the project.",
-    "timezone": "UTC",
+    "timezone": "America/New_York",
     "now": "2016/04/16",
     "year": "{{ cookiecutter.now[:4] }}",
     "production_host_name" : "example.org",
