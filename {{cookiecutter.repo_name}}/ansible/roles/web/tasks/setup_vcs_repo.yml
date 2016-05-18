@@ -10,7 +10,7 @@
       - test
 
 - name: Authorized hosts for github
-  shell: ssh-keyscan -H github.com.org >> /home/{{ deploy_user }}/.ssh/known_hosts
+  shell: ssh-keyscan -H github.com >> /home/{{ deploy_user }}/.ssh/known_hosts
   become: yes
   when: vcs == 'git'
   tags:
@@ -26,7 +26,7 @@
       - hg
 
 - name: clone git repo 
-  git: repo={{ project_repo }} dest={{ sites_dir }}/{{ project_name }}
+  git: repo={{ project_repo }} dest={{ sites_dir }}/{{ project_name }} accept_hostkey=true
   become: yes
   become_user: "{{ deploy_user }}"
   when: vcs == 'git'
