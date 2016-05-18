@@ -1,5 +1,6 @@
 {% raw %}---
 - name: Ensure the Nginx is installed
+  become: yes
   apt: name=nginx state=latest update_cache=yes
   tags:
       - nginx 
@@ -10,6 +11,7 @@
       - nginx 
  
 - name:  Nginx config NO SSL
+  become: ys
   template: src=nginx.j2
             dest=/etc/nginx/sites-available/{{ project_name }}
             backup=yes
@@ -86,6 +88,7 @@
     - nginx 
 
 - name: Ensure that the default site is disabled
+  become: yes
   command: rm /etc/nginx/sites-enabled/default
            removes=/etc/nginx/sites-enabled/default
   tags:
@@ -93,6 +96,7 @@
       - ssl 
 
 - name: enable the site 
+  become: yes
   file: src=/etc/nginx/sites-available/{{ project_name }} 
       dest=/etc/nginx/sites-enabled/{{ project_name }} state=link
   notify: restart nginx

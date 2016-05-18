@@ -11,7 +11,8 @@
 
 - name: Pull from git repo 
   shell: git pull
-  become: no
+  become: yes
+  become_user: "{{ deploy_user }}"
   when: vcs == 'git'
   args:
       chdir: "{{ sites_dir }}/{{ project_name }}"
@@ -34,7 +35,6 @@
   tags:
       - django
 
-
 - name: Create Django SuperUser 
   shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
           && echo "from django.contrib.auth.models import User;User.objects.create_superuser(username='{{ django_env.DJANGO_ADMIN_USER }}', email='{{ django_env.DJANGO_ADMIN_EMAIL }}', password='{{ django_env.DJANGO_ADMIN_PASSWD }}')" | ./manage.py shell
@@ -50,7 +50,8 @@
   shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
          && python manage.py collectstatic --noinput --settings={{ project_name }}.settings.production
   environment: django_env
-  become: no
+  become: yes
+  become_user: "{{ deploy_user }}"
   args:
     chdir: "{{ sites_dir }}/{{ project_name }}"
   tags:
@@ -60,7 +61,8 @@
   shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
         && python manage.py compress --settings={{ project_name }}.settings.production
   environment: django_env
-  become: no
+  become: yes
+  become_user: "{{ deploy_user }}"
   args:
     chdir: "{{ sites_dir }}/{{ project_name }}"
   tags:

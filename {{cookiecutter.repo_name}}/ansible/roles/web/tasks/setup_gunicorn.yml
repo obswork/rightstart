@@ -4,7 +4,8 @@
         owner={{ deploy_user }}
         group={{ deploy_user }}
         state=directory
-  become: no
+  become: yes
+  become_user: {{ deploy_user }}
   tags:
       - gunicorn
 
@@ -12,31 +13,37 @@
   template: src=gunicorn.j2
             dest={{ sites_dir }}/{{ project_name }}/gunicorn.conf
             backup=yes
-  become: no
+  become: yes
+  become_user: {{ deploy_user }}
   tags:
       - gunicorn
 
 - name: Install Supervisor 
   apt: name=supervisor update_cache=yes state=latest
+  become: yes
   tags:
       - packages
       - supervisor
       - gunicorn
 
 - name: Deploy the Supervisor Script
+  become: yes
   template: src=supervisor.j2
             dest=/etc/supervisor/conf.d/{{ project_name }}.conf
             backup=yes
   tags:
      - gunicorn
      - supervisor
+
 - name: Re-read the Supervisor config files
+  become: yes
   command: supervisorctl reread
   tags:
      - gunicorn
      - supervisor
 
 - name: Update Supervisor to add the app in the process group
+  become: yes
   command: supervisorctl update
   notify: restart gunicorn 
   tags:
