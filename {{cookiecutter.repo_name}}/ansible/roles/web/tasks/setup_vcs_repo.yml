@@ -1,6 +1,7 @@
 {% raw %}---
 - name: Authorized hosts for bitbucket
   shell: ssh-keyscan -H bitbucket.org >> /home/{{ deploy_user }}/.ssh/known_hosts
+  when: vcs == 'hg'
   args:
       creates: /home/{{ deploy_user }}/.ssh/known_hosts
   become: no
@@ -8,19 +9,27 @@
       - hg
       - test
 
+- name: Authorized hosts for github
+  shell: ssh-keyscan -H github.com.org >> /home/{{ deploy_user }}/.ssh/known_hosts
+  become: yes
+  when: vcs == 'git'
+  tags:
+      - hg
+      - test
+
 - name: Create the Sites Directory if not present 
-  file: path={{ sites_dir }} owner={{ deploy_user }} state=directory
+  file: path={{ sites_dir }}/{{ project_name }} owner={{ deploy_user }} group={{ deploy_user }} state=directory
+  become: yes
+  become_user: root
   tags:
       - web 
       - hg
 
 - name: clone git repo 
-  command: git clone {{ project_repo }} 
+  git: repo={{ project_repo }} dest={{ sites_dir }}/{{ project_name }}
+  become: yes
+  become_user: "{{ deploy_user }}"
   when: vcs == 'git'
-  become: no
-  args:
-      chdir: "{{ sites_dir }}"
-      creates: "{{ sites_dir }}/{{ project_name }}"
   tags:
       - web 
       - hg
