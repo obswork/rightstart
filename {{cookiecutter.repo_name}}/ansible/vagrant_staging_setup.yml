@@ -1,6 +1,6 @@
 {% raw %}---
 - hosts: all
-  sudo: yes
+  become: yes
   remote_user: vagrant
   
   tasks:
