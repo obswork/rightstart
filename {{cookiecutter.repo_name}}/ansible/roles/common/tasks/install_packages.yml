@@ -14,9 +14,11 @@
     - build-essential
     - python 
     - python-dev
+    - python3-dev
     - python-setuptools
     - libjpeg-dev
     - libtiff-dev 
+    - libffi-dev
     - zlib1g-dev 
     - libfreetype6-dev 
     - liblcms2-dev
