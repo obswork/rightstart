@@ -1,5 +1,4 @@
 from .base import *
-import os
 
 DEBUG = False
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
@@ -9,6 +8,7 @@ SECRET_KEY = get_env_variable("SECRET_KEY")
 # Compress static files offline
 # http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
 
+COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
 
 COMPRESS_CSS_FILTERS = [
@@ -33,7 +33,7 @@ INSTALLED_APPS += (
     'gunicorn',
 )
 
-#support opbeat
+# support opbeat
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -76,7 +76,7 @@ CACHES = {
     }
 }
 
-DEFAULT_FROM_EMAIL =  get_env_variable('EMAIL_FROM')
+DEFAULT_FROM_EMAIL = get_env_variable('EMAIL_FROM')
 EMAIL_USE_TLS = True
 EMAIL_HOST = get_env_variable('EMAIL_HOST')
 EMAIL_HOST_USER = get_env_variable('EMAIL_USER')
