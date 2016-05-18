@@ -8,7 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 import os
-from os.path import abspath, dirname, join, normpath
+from os.path import abspath, dirname, join
 from sys import path
 
 from django.core.exceptions import ImproperlyConfigured
@@ -145,7 +145,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en-gb'
-TIME_ZONE = 'UTC'
+TIME_ZONE = '{{cookiecutter.timezone}}'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
@@ -240,8 +240,8 @@ LOGIN_URL = 'wagtailadmin_login'
 LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
 WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
-
 WAGTAILSEARCH_RESULTS_TEMPLATE = 'utils/tags/search/search_results.html'
+WAGTAIL_ENABLE_UPDATE_CHECK = False
 
 # Use Elasticsearch as the search backend for extra performance and better search results
 # WAGTAILSEARCH_BACKENDS = {
