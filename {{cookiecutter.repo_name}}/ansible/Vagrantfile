@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   hosts.each do |name, ip|
     config.vm.define name do |machine|
       machine.vm.box = "ubuntu/trusty64"
-      machine.vm.hostname = "%s.wagtail-staging.org" % name
+      machine.vm.hostname = "staging.yourdomain.com" 
       machine.vm.network :private_network, ip: ip
       machine.vm.network :forwarded_port, guest:80, host: 80 
       machine.vm.provider "virtualbox" do |v|
