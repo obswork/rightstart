@@ -5,7 +5,7 @@
         group={{ deploy_user }}
         state=directory
   become: yes
-  become_user: {{ deploy_user }}
+  become_user: "{{ deploy_user }}"
   tags:
       - gunicorn
 
@@ -14,7 +14,7 @@
             dest={{ sites_dir }}/{{ project_name }}/gunicorn.conf
             backup=yes
   become: yes
-  become_user: {{ deploy_user }}
+  become_user: "{{ deploy_user }}"
   tags:
       - gunicorn
 
