@@ -57,13 +57,13 @@
   tags:
       - django
 
-- name: Run Django compress
-  shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
-        && python manage.py compress --settings={{ project_name }}.settings.production
-  environment: "{{django_env}}"
-  become: yes
-  become_user: "{{ deploy_user }}"
-  args:
-    chdir: "{{ sites_dir }}/{{ project_name }}"
-  tags:
-    - django{% endraw %}
+  # - name: Run Django compress
+  #   shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
+  #         && python manage.py compress --settings={{ project_name }}.settings.production
+  #   environment: "{{django_env}}"
+  #   become: yes
+  #   become_user: "{{ deploy_user }}"
+  #   args:
+  #     chdir: "{{ sites_dir }}/{{ project_name }}"
+  #   tags:
+  #     - django{% endraw %}
