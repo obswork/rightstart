@@ -56,6 +56,7 @@
      - redis
 
 - name: Ensure that redis only listens only to localhost
+  become: yes
   lineinfile: dest=/etc/redis/6379.conf 
                 regexp='^#bind 127\.0\.0\.1'
                 insertafter='^#bind'
