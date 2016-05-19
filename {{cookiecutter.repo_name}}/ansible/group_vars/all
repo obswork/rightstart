@@ -2,7 +2,7 @@
 project_repo: ssh://hg@{{cookiecutter.vcs_repo_hostname}}/{{cookiecutter.vcs_repo_username}}/{{cookiecutter.repo_name}}{% else %}project_repo: git@{{cookiecutter.vcs_repo_hostname}}:{{cookiecutter.vcs_repo_username}}/{{cookiecutter.repo_name}}.git{% endif %}
 project_name: {{cookiecutter.repo_name}} 
 sites_dir:  /usr/local/sites
-virtualenvs_dir: /home/django/virtualenvs/
+virtualenvs_dir: /home/{{ cookiecutter.deploy_user_name }}/virtualenvs/
 nginx_root_dir:  /etc/nginx/sites-available
 gunicorn:  127.0.0.1:2015
 deploy_user: {{ cookiecutter.deploy_user_name }} 
