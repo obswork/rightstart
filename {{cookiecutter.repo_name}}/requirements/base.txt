@@ -3,8 +3,10 @@ psycopg2==2.6.1
 elasticsearch==1.6.0
 django-redis==4.3.0
 django_compressor==2.0
-wagtail==1.4.4
+wagtail==1.5
+django-libsass>=0.7
 celery==3.1.18
 ansible==2.0.1.0
 wagalytics==0.5
-wagtailmodeladmin
+django-taggit>=0.19.0
+django-modelcluster>=2.0
