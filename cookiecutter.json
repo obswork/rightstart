@@ -19,5 +19,5 @@
     "django_admin_email": "admin@example.org",
     "remote_user": "changeme",
     "use_bootstrap": true,
-    "use_jquery.min": true
+    "use_jquery_min": true
 }
