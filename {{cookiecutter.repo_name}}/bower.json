@@ -3,8 +3,8 @@
   "dependencies": {
     {% if cookiecutter.use_bootstrap %}
     "bootstrap": "3.3.6",
-    {% endif %}
     {% if cookiecutter.use_jquery_min %}
     "jquery": "https://code.jquery.com/jquery-2.2.4.min.js"
+    {% endif %}
  }
 }
