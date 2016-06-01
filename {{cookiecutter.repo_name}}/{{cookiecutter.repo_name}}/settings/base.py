@@ -75,6 +75,7 @@ INSTALLED_APPS = (
 
     'wagalytics',
     'wagtailfontawesome',
+    'wagtail.contrib.modeladmin',
 )
 
 MIDDLEWARE_CLASSES = (
